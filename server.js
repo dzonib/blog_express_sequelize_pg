@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const sequelize = require('./database/database')
 const User = require('./models/user')
@@ -7,6 +8,7 @@ const Post = require('./models/post')
 const Comment = require('./models/comment')
 
 const app = express()
+app.use(cors())
 app.use(bodyParser.json())
 
 User.hasMany(Post)
@@ -27,6 +29,6 @@ app.use('/api/comments', commentsRoute)
 sequelize
 	.sync()
 	.then(() => {
-		app.listen(3000, () => console.log('App running on http://localhost:3000'))
+		app.listen(5000, () => console.log('App running on http://localhost:3000'))
 	})
 	.catch((e) => console.log(e))

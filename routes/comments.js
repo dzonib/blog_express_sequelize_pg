@@ -12,7 +12,7 @@ router.post('/:postId', isAuth, async (req, res, next) => {
 		const { postId } = req.params
 		const post = await Post.findOne({ where: { id: postId } })
 
-		const comment = await post.createComment({ text: req.body.text, userId: req.usersData.id})
+		const comment = await post.createComment({ text: req.body.text, userId: req.usersData.id })
 
 		res.json(comment)
 	} catch (e) {
@@ -21,17 +21,18 @@ router.post('/:postId', isAuth, async (req, res, next) => {
 })
 
 router.delete('/:commentId', isAuth, async (req, res, next) => {
-    try {
-        await Comment.destroy({ 
-            where: { 
-                id: req.params.commentId, 
-                userId: req.usersData.id
-        }})
-        
-        next()
-    } catch(e) {
-        console.log(e.message)
-    }
+	try {
+		await Comment.destroy({
+			where: {
+				id: req.params.commentId,
+				userId: req.usersData.id
+			}
+		})
+
+		next()
+	} catch (e) {
+		console.log(e.message)
+	}
 })
 
 module.exports = router

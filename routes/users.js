@@ -52,7 +52,7 @@ router.post('/login', async (req, res, next) => {
 				id: user.id
 			},
 			'spacemarmun',
-			{ expiresIn: '1h' }
+			{ expiresIn: '100h' }
 		)
 
 		res.json('Bearer ' + token)
